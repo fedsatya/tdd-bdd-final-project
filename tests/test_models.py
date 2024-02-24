@@ -31,6 +31,7 @@ from service.models import Product, Category, db
 from service import app
 from tests.factories import ProductFactory
 
+
 DATABASE_URI = os.getenv(
     "DATABASE_URI", "postgresql://postgres:postgres@localhost:5432/postgres"
 )
@@ -108,7 +109,7 @@ class TestProductModel(unittest.TestCase):
     def test_read_a_product(self):
         """It should Read a product"""
         product = ProductFactory()
-        # logging.debugging(f"Product: {product}")
+        logging.debug("Product: %s", product)
         product.id = None
         product.create()
         self.assertIsNotNone(product.id)
@@ -121,10 +122,10 @@ class TestProductModel(unittest.TestCase):
     def test_update_a_product(self):
         """It should Update a product"""
         product = ProductFactory()
-        # logging.debugging(f"Product: {product}")
+        logging.debug("Product: %s", product)
         product.id = None
         product.create()
-        # logging.debugging(f"Product: {product}")
+        logging.debug("Product: %s", product)
         self.assertIsNotNone(product.id)
         product.description = 'testing'
         original_id = product.id
