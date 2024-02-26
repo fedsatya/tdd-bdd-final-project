@@ -132,6 +132,7 @@ def get_products(product_id):
 # PLACE YOUR CODE TO UPDATE A PRODUCT HERE
 #
 
+
 @app.route("/products/<int:product_id>", methods=['PUT'])
 def update_products(product_id):
     """
@@ -139,7 +140,7 @@ def update_products(product_id):
     """
     app.logger.info("Request to update a product with id [%s]", product_id)
     check_content_type("application/json")
-    
+
     product = Product.find(product_id)
     if not product:
         abort(status.HTTP_404_NOT_FOUND, f"Product with id '{product_id}' was not found.")
@@ -159,6 +160,8 @@ def update_products(product_id):
 ######################################################################
 # DELETE A PRODUCT
 ######################################################################
+
+
 @app.route("/products/<int:product_id>", methods=["DELETE"])
 def delete_products(product_id):
     """
@@ -171,9 +174,8 @@ def delete_products(product_id):
         product.delete()
     return "", status.HTTP_204_NO_CONTENT
 
-
-
 # LIST PRODUCTS
+
 
 @app.route("/products", methods=["GET"])
 def list_products():

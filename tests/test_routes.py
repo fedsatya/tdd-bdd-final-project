@@ -233,7 +233,7 @@ class TestProductRoutes(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
         self.assertEqual(len(data), name_count)
-        
+
         for product in data:
             self.assertEqual(product['name'], test_name)
 
@@ -258,9 +258,9 @@ class TestProductRoutes(TestCase):
         products = self._create_products(10)
         available_products = [product for product in products if product.available is True]
         available_count = len(available_products)
-        logging.debug("Available products [%d] %s", available_count, available_products)     
-
+        logging.debug("Available products [%d] %s", available_count, available_products)  
         response = self.client.get(BASE_URL, query_string="available=true")
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
         self.assertEqual(len(data), available_count)
